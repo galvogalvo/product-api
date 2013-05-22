@@ -4,19 +4,23 @@ require(APPPATH.'libraries/REST_Controller.php');
 
 class Api extends REST_Controller {
 
+	public function __construct()
+	{
+		parent::__construct();
+
+		$this->load->model('products_model');
+	}
+
 	/**
 	 * Index Page for this controller.
 	 *
 	 * Maps to the following URL
-	 * 		http://example.com/index.php/welcome
+	 * 		http://example.com/index.php/api
 	 *	- or -
-	 * 		http://example.com/index.php/welcome/index
-	 *	- or -
-	 * Since this controller is set as the default controller in
-	 * config/routes.php, it's displayed at http://example.com/
+	 * 		http://example.com/index.php/api/index
 	 *
 	 * So any other public methods not prefixed with an underscore will
-	 * map to /index.php/welcome/<method_name>
+	 * map to /index.php/api/<method_name>
 	 * @see http://codeigniter.com/user_guide/general/urls.html
 	 */
 	public function index()
@@ -31,12 +35,8 @@ class Api extends REST_Controller {
 			$this->response(NULL, 400);
 		}
 
-//		$product = $this->product_model->get( $this->get('id') );
-		$product = array(
-			'name' => 'tin o\' beans',
-			'size' => 'just enough',
-			'awesomeness' => 'loads'
-		);
+		$this->products_model->product->id = $this->get('id');
+		$product = $this->products_model->get_product();
 
 		if($product)
 		{
