@@ -35,6 +35,7 @@ class Api extends REST_Controller {
 		$product = array(
 			'name' => 'tin o\' beans',
 			'size' => 'just enough',
+			'awesomeness' => 'loads'
 		);
 
 		if($product)
