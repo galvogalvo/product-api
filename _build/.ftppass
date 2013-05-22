@@ -1,0 +1,18 @@
+{
+	"key-dev": {
+		"username": "andrewhawkes",
+		"password": "nutnephJim"
+	},
+	"key-qa": {
+		"username": "andrewhawkes",
+		"password": "nutnephJim"
+	},
+	"key-staging": {
+		"username": "sdomorerexona_sftp",
+		"password": "DP822qcpDtIr7GX3"
+	},
+	"key-production": {
+		"username": "domorerexona_sftp",
+		"password": "7AjiVrUX+D6R62sH"
+	}
+}

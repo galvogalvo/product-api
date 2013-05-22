@@ -1,0 +1,25 @@
+// Variables
+
+$dark: #333333;
+$light: #cecece;
+
+// Mixins
+
+@mixin border-radius($tl, $tr, $br, $bl) {
+  border-radius: $tl $tr $br $bl;
+  -webkit-border-radius: $tl $tr $br $bl;
+  -moz-border-radius: $tl $tr $br $bl;
+  -o-border-radius: $tl $tr $br $bl;
+}
+
+@mixin box-shadow($hl, $vl, $br, $spread, $color) {
+  box-shadow: $hl $vl $br $spread $color;
+  -webkit-box-shadow:  $hl $vl $br $spread $color;
+  -moz-box-shadow:  $hl $vl $br $spread $color;
+  -o-box-shadow:  $hl $vl $br $spread $color;
+}
+
+body {
+  background: #f2f2f2;
+  color: $dark;
+}

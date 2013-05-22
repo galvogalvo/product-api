@@ -1,0 +1,47 @@
+<IfModule mod_rewrite.c>
+
+	RewriteEngine on
+	RewriteBase /
+
+	# Prevent .svn directory browsing.
+	RewriteRule ^(.*)(.svn)(.*)$ /error_404 [L]
+	<IfModule autoindex_module>
+	  IndexIgnore .svn
+	</IfModule>
+
+	# Prevent .hgcheck directory browsing.
+	RewriteRule ^(.*)(.hgcheck)(.*)$ /error_404 [L]
+	<IfModule autoindex_module>
+	  IndexIgnore .hgcheck
+	</IfModule>
+
+	# Removes trailing slashes (prevents SEO duplicate content issues)
+	RewriteCond %{REQUEST_FILENAME} !-d
+	RewriteRule ^(.+)/$ /$1 [L,R=301]
+
+	# Removes access to the system folder by users.
+	# Additionally this will allow you to create a System.php controller,
+	# previously this would not have been possible.
+	# 'system' can be replaced if you have renamed your system folder.
+	RewriteCond %{REQUEST_URI} ^system.*
+	RewriteRule ^(.*)$ /index.php/$1 [L]
+
+	# Checks to see if the user is attempting to access a valid file,
+	# such as an image or css document, if this isn't true it sends the
+	# request to index.php
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteCond %{REQUEST_FILENAME} !-d
+	RewriteRule ^(.*)$ index.php/$1 [L]
+
+	# Rewrite public URLs
+	RewriteCond $1 !^(favicon\.ico|index\.php|assets|robots\.txt)
+	RewriteRule ^(.*)$ index.php?$1 [L]
+
+</IfModule>
+
+<IfModule !mod_rewrite.c>
+
+	# Without mod_rewrite, route 404's to the front controller
+	ErrorDocument 404 /index.php
+
+</IfModule>
